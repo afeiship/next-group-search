@@ -1,0 +1,4 @@
+@import "../dist/webkit-sassui-icon-badge.scss";
+.test-webkit-sassui-icon-badge{
+  @include webkit-sassui-icon-badge();
+}

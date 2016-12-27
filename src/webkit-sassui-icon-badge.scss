@@ -1,0 +1,25 @@
+/*webkit-sassui-icon-badge Start*/
+@import "bower_components/webkit-sassui-badge/dist/webkit-sassui-badge.scss";
+@import "bower_components/webkit-sassui-frame-wrapper/dist/webkit-sassui-frame-wrapper.scss";
+
+@mixin webkit-sassui-icon-badge($inSize:48px,$inRadius:10px,$inBadgeColor:#FFF,$inBadgeBgColor:#dd514c,$inBadgeRadius:10px){
+  //Your mixin code goes here.
+  display: inline-block;
+  position: relative;
+  >.img{
+    @extend .webkit-sassui-frame-wrapper;
+    width:$inSize;
+    height:$inSize;
+    border-radius: $inRadius;
+    overflow: hidden;
+    z-index: 1;
+  }
+  >.badge{
+    @include webkit-sassui-badge($inBadgeColor,$inBadgeBgColor,$inBadgeRadius);
+    position: absolute;
+    right:-$inBadgeRadius;
+    top:-$inBadgeRadius;
+    z-index: 2;
+  }
+}
+/*webkit-sassui-icon-badge End*/

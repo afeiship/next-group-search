@@ -1,0 +1,33 @@
+{
+  "name": "webkit-sassui-icon-badge",
+  "description": "webkit sass ui for icon with badge.",
+  "main": [
+    "dist/webkit-sassui-icon-badge.css",
+    "dist/webkit-sassui-icon-badge.scss"
+  ],
+  "authors": [
+    "afei"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "webkit",
+    "cssui",
+    "icon-badge"
+  ],
+  "homepage": "https://github.com/afeiship/webkit-cssui-absolute-center",
+  "moduleType": [
+    "amd"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src"
+  ],
+  "dependencies": {
+    "webkit-sassui-badge": "afeiship/webkit-sassui-badge",
+    "webkit-sassui-frame-wrapper": "afeiship/webkit-sassui-frame-wrapper"
+  }
+}
