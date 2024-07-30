@@ -2,6 +2,8 @@ import nx from '@jswork/next';
 
 const defaults = {
   allKeys: ['ALL', '', '*'],
+
+  // 以下2个是group为Array的情况下的key
   groupKey: 'groupKey',
   itemsKey: 'items'
 };
