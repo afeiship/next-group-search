@@ -1,21 +1,9 @@
-(function() {
+const gulp = require('gulp');
+const { NxScripts, CleanRegistry } = require('@jswork/gulp-registry');
 
-  'use strict';
+const task1 = new CleanRegistry();
+const task2 = new NxScripts({ name: 'qs', classify: false });
 
-  var path = require('path');
-  var gulp = require('gulp');
-  var argv = require('yargs').argv;
-  var fs = require('fs');
-  var $ = require('gulp-load-plugins')({
-    pattern: ['gulp-*', 'gulp.*', 'del']
-  });
+[task1, task2].forEach(gulp.registry);
 
-  //import
-  fs.readdirSync('./gulp').map(function(file) {
-    require('./gulp/' + file);
-  });
-
-
-  gulp.task('default',['build']);
-
-}());
+gulp.task('default', gulp.series(['clean', 'nx:scripts']));
