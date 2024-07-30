@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-group-search",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Group search for next.",
   "homepage": "https://js.work",
   "files": [
@@ -58,6 +58,7 @@
     "group",
     "next",
     "nx",
-    "search"
+    "search",
+    "iterator"
   ]
 }
