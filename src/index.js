@@ -1,9 +1,22 @@
 import nx from '@jswork/next';
-const defaults = { context: global };
 
-nx.groupSearch = function (inOptions) {
-  var options = nx.mix(null, defaults, inOptions);
-  // package codes...
+const defaults = {
+  allKeys: ['ALL', '', '*'],
+};
+
+nx.groupSearch = function (inGroup, inKeyword, inOptions) {
+  const options = nx.mix(null, defaults, inOptions);
+  const keyword = inKeyword.trim();
+  const result = {};
+  nx.forIn(inGroup, (groupName, items) => {
+    if (Array.isArray(items)) {
+      result[groupName] = items.filter((item, index) => {
+        if (options.allKeys.includes(keyword)) return true;
+        return options.callback({ item, index, keyword, groupName });
+      });
+    }
+  });
+  return result;
 };
 
 if (typeof module !== 'undefined' && module.exports && typeof wx === 'undefined') {
