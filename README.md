@@ -27,13 +27,26 @@ const g1 = {
   ]
 };
 
-const res = nx.groupSearch(g1, "fruit",{
+const res = nx.groupSearch(g1, {
+  filters: {
+    type: "fruit",
+    quantity: 5
+  },
   callback: ({ item }) => {
     return item.quantity > 0;
   }
 });
 
 console.log(res);
+
+// output: 
+//  {
+//   restock: [
+//     { name: "asparagus", type: "vegetables", quantity: 5 },
+//     { name: "cherries", type: "fruit", quantity: 5 }
+//   ],
+//   ok: []
+// };
 ```
 
 ## license
