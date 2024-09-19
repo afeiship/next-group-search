@@ -12,9 +12,7 @@ const defaults = {
 
 const obj2arr = (obj) => {
   if (!obj || typeof obj !== 'object') return [];
-  return Object.keys(obj).map((key) => {
-    return { key, value: obj[key] };
-  });
+  return Object.keys(obj).map((key) => ({ key, value: obj[key] }));
 };
 
 nx.groupSearch = function (inGroup, inOptions) {
