@@ -6,9 +6,9 @@ interface CallbackOptions {
 }
 
 interface GroupSearchOptions {
-  relation: 'every' | 'some';
+  relation?: 'every' | 'some';
   filters?: any[] | Record<string, any>;
-  callback: (options: CallbackOptions) => boolean;
+  callback?: (options: CallbackOptions) => boolean;
 }
 
 interface NxStatic {
