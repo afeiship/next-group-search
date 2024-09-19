@@ -10,14 +10,22 @@ const defaults = {
   }
 };
 
+const obj2arr = (obj) => {
+  if (!obj || typeof obj !== 'object') return [];
+  return Object.keys(obj).map((key) => {
+    return { key, value: obj[key] };
+  });
+};
+
 nx.groupSearch = function (inGroup, inOptions) {
   const { filters, relation, callback } = nx.mix(null, defaults, inOptions);
+  const calcFilters = Array.isArray(filters) ? filters : obj2arr(filters);
   const result = {};
   nx.forIn(inGroup, (key, value) => {
     if (Array.isArray(value)) {
       result[key] = value.filter((item, index) => {
-        if (filters.length === 0) return callback({ item, index });
-        return filters[relation]((filter) => callback({ item, index, ...filter }));
+        if (calcFilters.length === 0) return callback({ item, index });
+        return calcFilters[relation]((filter) => callback({ item, index, ...filter }));
       });
     }
   });

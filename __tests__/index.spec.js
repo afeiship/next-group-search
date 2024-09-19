@@ -105,9 +105,63 @@ describe('nx.groupSearch function', () => {
     });
 
     expect(res2).toEqual({
+      restock: [{ name: 'cherries', type: 'fruit', quantity: 5 }],
+      ok: []
+    });
+  });
+
+  test('04/filter is object, multiple filter', () => {
+    const g1 = {
       restock: [
+        { name: 'asparagus', type: 'vegetables', quantity: 5 },
+        { name: 'bananas', type: 'fruit', quantity: 0 },
         { name: 'cherries', type: 'fruit', quantity: 5 }
       ],
+      ok: [
+        { name: 'goat', type: 'meat', quantity: 23 },
+        { name: 'fish', type: 'meat', quantity: 22 }
+      ]
+    };
+
+    const res1 = nx.groupSearch(g1, {
+      filters: {
+        type: 'fruit',
+        quantity: 5
+      },
+      callback: ({ item, key, value }) => {
+        const itemValue = nx.get(item, key);
+        return itemValue === value;
+      }
+    });
+
+    expect(res1).toEqual({
+      restock: [{ name: 'cherries', type: 'fruit', quantity: 5 }],
+      ok: []
+    });
+  });
+
+  test('05/default callback', () => {
+    const g1 = {
+      restock: [
+        { name: 'asparagus', type: 'vegetables', quantity: 5 },
+        { name: 'bananas', type: 'fruit', quantity: 0 },
+        { name: 'cherries', type: 'fruit', quantity: 5 }
+      ],
+      ok: [
+        { name: 'goat', type: 'meat', quantity: 23 },
+        { name: 'fish', type: 'meat', quantity: 22 }
+      ]
+    };
+
+    const res1 = nx.groupSearch(g1, {
+      filters: {
+        type: 'fruit',
+        quantity: 5
+      }
+    });
+
+    expect(res1).toEqual({
+      restock: [{ name: 'cherries', type: 'fruit', quantity: 5 }],
       ok: []
     });
   });
