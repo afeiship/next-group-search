@@ -2,22 +2,22 @@ import nx from '@jswork/next';
 
 const defaults = {
   filters: [],
+  relation: 'every',
   callback: ({ item, value, key }) => {
     if (value === 'ALL' || !value) return true;
-    const target = nx.get(item, key);
-    return target.includes(value);
+    const itemValue = nx.get(item, key);
+    return itemValue === value;
   }
 };
 
 nx.groupSearch = function (inGroup, inOptions) {
-  const { filters, callback } = nx.mix(null, defaults, inOptions);
+  const { filters, relation, callback } = nx.mix(null, defaults, inOptions);
   const result = {};
   nx.forIn(inGroup, (key, value) => {
     if (Array.isArray(value)) {
-      result[key] = value.filter((item) => {
-        return filters.every((filter) => {
-          return callback({ item, ...filter });
-        });
+      result[key] = value.filter((item, index) => {
+        if (filters.length === 0) return callback({ item, index });
+        return filters[relation]((filter) => callback({ item, index, ...filter }));
       });
     }
   });
